@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(to right, #ea7889 0%, #f6764d 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +12,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  body {
+    background:#ea7889;
+  }
 }

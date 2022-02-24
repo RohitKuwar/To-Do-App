@@ -1,0 +1,48 @@
+.taskContainer {
+  margin-top: 0.6em;
+}
+.task {
+  width: 60%;
+  margin: auto;
+  padding: 0.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+}
+.checkbox {
+  cursor: pointer;
+}
+.text {
+  width: 90%;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+}
+.deleteBtn {
+  color: #5a4848;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .taskContainer {
+    margin-top: 0.4em;
+  }
+  .task {
+    width: 90%;
+  }
+  .text {
+    width: 80%;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 320px) {
+  .task {
+    width: 80%;
+  }
+}
