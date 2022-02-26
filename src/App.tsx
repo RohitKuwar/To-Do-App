@@ -1,12 +1,25 @@
-import { FC, ChangeEvent, KeyboardEvent, useState } from "react";
+import { FC, ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import TodoTask from "./components/todotask/TodoTask";
 import { ITask } from "./Interfaces";
 import "./App.css";
 
+const LOCAL_STORAGE_KEY: string = "TODOS_KEY";
+
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
   const [todoList, setTodoList] = useState<ITask[]>([]);
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}');
+    // console.log(storedTodos);
+    if (storedTodos) setTodoList(storedTodos);
+  }, []);
+
+  // saving the todos in browser storage to prevent loss of todos on refreshing tab
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList));
+  }, [todoList]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
       setTask(event.target.value);
