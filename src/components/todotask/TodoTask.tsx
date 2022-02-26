@@ -1,5 +1,4 @@
 import { ITask } from "../../Interfaces";
-import styles from './todotask.module.css';
 
 interface Props {
   task: ITask;
@@ -9,29 +8,29 @@ interface Props {
 
 const TodoTask = ({ task, deleteTask, toggleTask }: Props) => {
   return (
-    <div className={styles.taskContainer}>
-      <div className={styles.task}>
+    <div className="alert alert-dismissible fade show alertBox mx-auto shadow-lg task"
+    role="alert">
         <input
-          className={styles.checkbox}
+          className='checkbox'
           type='checkbox'
           checked={task.isCompleted}
           onChange={() => toggleTask(task.id)}
         />
         <span
-          className={styles.text}
+          className='text'
           style={{ textDecoration: task.isCompleted ? "line-through" : "" }}
         >
           {task.taskName}
         </span>
         <button
-          className={styles.deleteBtn}
+          type='button'
+          className='deleteBtn'
           onClick={() => {
             deleteTask(task.taskName);
           }}
         >
           &times;
         </button>
-      </div>
     </div>
   );
 };

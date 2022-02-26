@@ -1,5 +1,5 @@
 import { FC, ChangeEvent, KeyboardEvent, useState } from "react";
-import Header from "./components/header/Header";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import TodoTask from "./components/todotask/TodoTask";
 import { ITask } from "./Interfaces";
 import "./App.css";
@@ -49,21 +49,44 @@ const App: FC = () => {
   };
 
   return (
-    <div className='App'>
-      <Header />
-      <div className='input-container'>
-        <input
+    <Container className='mt-3 p-3 '>
+      <h2 className=' p-3 text-center header-color text-white shadow-lg '>
+        To-Do-List App
+      </h2>
+      <Row className='p-2 mt-3 mx-auto'>
+        <Col
+          xs={12}
+          sm={12}
+          md={8}
+          className='p-3 d-flex justify-content-center'
+        >
+          <input
+            className='input shadow form-control d-flex justify-content-center'
             type='text'
-            placeholder='Task...'
-            autoComplete="off"
+            placeholder='Add Task...'
+            autoComplete='off'
             name='task'
             value={task}
             onChange={handleChange}
             onKeyDown={handleKeyPress}
-        />
-        <button onClick={addTask}>Add Task</button>
-      </div>
-      <div className='todoList'>
+          />
+        </Col>
+        <Col
+          xs={12}
+          sm={12}
+          md={4}
+          className='p-3 d-flex justify-content-center'
+        >
+          <Button
+            className='addBtn btn-lg shadow w-75'
+            variant='outline-warning'
+            onClick={addTask}
+          >
+            Add Task
+          </Button>
+        </Col>
+      </Row>
+      <div className='p-3 container justify-content-center'>
         {todoList.map((task: ITask, key: number) => {
           return (
             <TodoTask
@@ -75,7 +98,7 @@ const App: FC = () => {
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 };
 
