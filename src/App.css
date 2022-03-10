@@ -27,15 +27,22 @@ h2 {
 .text {
   width: 90%;
   text-align: left;
-  font-weight: bold;
+  font-weight: 500;
 }
 .deleteBtn {
-  color: #5a4848;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  font-weight: 700;
   cursor: pointer;
+}
+.clearBtn {
+  color: white;
+  background: red;
+  width: 8em;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+.clearBtn:hover {
+  color: white;
+  background: red;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

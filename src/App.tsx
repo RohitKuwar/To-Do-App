@@ -1,6 +1,5 @@
 import { FC, ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import TodoTask from "./components/todotask/TodoTask";
 import { ITask } from "./Interfaces";
 import "./App.css";
 
@@ -11,8 +10,9 @@ const App: FC = () => {
   const [todoList, setTodoList] = useState<ITask[]>([]);
 
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}');
-    // console.log(storedTodos);
+    const storedTodos = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEY) || "{}"
+    );
     if (storedTodos) setTodoList(storedTodos);
   }, []);
 
@@ -22,11 +22,11 @@ const App: FC = () => {
   }, [todoList]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-      setTask(event.target.value);
+    setTask(event.target.value);
   };
 
   const addTask = (): void => {
-    if(task!== "") {
+    if (task !== "") {
       const newTask = {
         taskName: task,
         id: todoList.length + 1,
@@ -61,9 +61,14 @@ const App: FC = () => {
     );
   };
 
+  const clearList = () => {
+    setTodoList([]);
+  };
+
   return (
     <Container className='mt-3 p-3 '>
       <h2 className=' p-3 text-center header-color text-white shadow-lg '>
+        <i className='fa-solid fa-list-check'></i> {' '}
         To-Do-List App
       </h2>
       <Row className='p-2 mt-3 mx-auto'>
@@ -76,7 +81,7 @@ const App: FC = () => {
           <input
             className='input shadow form-control d-flex justify-content-center'
             type='text'
-            placeholder='Add Task...'
+            placeholder='Add task...'
             autoComplete='off'
             name='task'
             value={task}
@@ -100,16 +105,47 @@ const App: FC = () => {
         </Col>
       </Row>
       <div className='p-3 container justify-content-center'>
-        {todoList.map((task: ITask, key: number) => {
+        {todoList.map((task) => {
           return (
-            <TodoTask
-              key={key}
-              task={task}
-              deleteTask={deleteTask}
-              toggleTask={toggleTask}
-            />
+            <div
+              className='alert alert-dismissible fade show alertBox mx-auto shadow-lg task'
+              role='alert'
+            >
+              <input
+                className='checkbox'
+                type='checkbox'
+                checked={task.isCompleted}
+                onChange={() => toggleTask(task.id)}
+              />
+              <span
+                className='text'
+                style={{
+                  textDecoration: task.isCompleted ? "line-through" : "",
+                }}
+              >
+                {task.taskName}
+              </span>
+              <i className="fa-solid fa-trash deleteBtn" onClick={() => deleteTask(task.taskName)}></i>
+            </div>
           );
         })}
+        <Col
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          className='p-3 d-flex justify-content-center'
+        >
+          {todoList.length > 1 ? (
+            <Button
+              className='clearBtn btn-md shadow w-50'
+              variant='outline-primary'
+              onClick={clearList}
+            >
+              Clear List
+            </Button>
+          ) : null}
+        </Col>
       </div>
     </Container>
   );
