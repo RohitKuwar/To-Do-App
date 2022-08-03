@@ -61,6 +61,15 @@ const App: FC = () => {
     );
   };
 
+  const updateTask = (taskNameToUpdate: string): void => {
+    let [updatedTask] = 
+      todoList.filter((task) => {
+        return task.taskName === taskNameToUpdate;
+      })
+    setTask(updatedTask.taskName);
+    deleteTask(taskNameToUpdate);
+  };
+
   const clearList = () => {
     setTodoList([]);
   };
@@ -125,6 +134,7 @@ const App: FC = () => {
               >
                 {task.taskName}
               </span>
+              <i className="fa-solid fa-pen-to-square deleteBtn" onClick={() => updateTask(task.taskName)}></i>
               <i className="fa-solid fa-trash deleteBtn" onClick={() => deleteTask(task.taskName)}></i>
             </div>
           );

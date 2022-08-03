@@ -28,6 +28,7 @@ h2 {
   width: 90%;
   text-align: left;
   font-weight: 500;
+  word-wrap: break-word;
 }
 .deleteBtn {
   cursor: pointer;
@@ -54,5 +55,6 @@ h2 {
   }
   .text {
     width: 80%;
+    word-wrap: break-word;
   }
 }
