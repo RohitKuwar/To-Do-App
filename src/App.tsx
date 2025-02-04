@@ -100,7 +100,7 @@ const App: FC = () => {
         </Col>
       </Row>
       <div className='p-3 container justify-content-center'>
-        {todoList.map((task: ITask, key: number) => {
+        {todoList && todoList.length > 0 && todoList.map((task: ITask, key: number) => {
           return (
             <TodoTask
               key={key}
